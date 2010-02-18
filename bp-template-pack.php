@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: WordPress to BuddyPress Theme Converter
+Plugin Name: BuddyPress Template Pack
 Plugin URI: http://wordpress.org/extend/plugins/bp-template-pack/
-Description: Add support for BuddyPress to your existing WordPress theme. This plugin will guide you through the conversion process step by step.
+Description: Add support for BuddyPress to your existing WordPress theme. This plugin will guide you through the process step by step.
 Author: apeatling
 Version: 1.0
 Author URI: http://buddypress.org/developers/apeatling/

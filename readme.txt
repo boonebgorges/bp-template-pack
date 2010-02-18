@@ -7,9 +7,9 @@ Stable tag: 1.0
 
 == Description ==
 
-Add support for BuddyPress to your existing WordPress theme. This plugin will guide you through the conversion process
+Add support for BuddyPress to your existing WordPress theme. This plugin will guide you through the process
 step by step. Once you are finished, your existing WordPress theme will be able to manage and display all BuddyPress
-pages and content.
+pages and content. The process is completely reversible and does not modify any of your existing template files.
 
 == Installation ==
 
