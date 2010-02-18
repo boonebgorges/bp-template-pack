@@ -13,8 +13,8 @@ pages and content. The process is completely reversible and does not modify any 
 
 == Installation ==
 
-You can download and install the plugin using the built in WordPress plugin installer.
-If you download the plugin manually, uploaded to "/wp-content/plugins/bp-template-pack/".
+Download and install the plugin using the built in WordPress plugin installer.
+If you download the plugin manually, upload the plugin to "/wp-content/plugins/bp-template-pack/".
 
 Activate the plugin in the "Plugins" admin panel using the "Activate" link.
 
