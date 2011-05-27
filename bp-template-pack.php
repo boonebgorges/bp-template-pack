@@ -49,6 +49,22 @@ function bp_tpack_add_theme_menu() {
 }
 add_action( 'admin_menu', 'bp_tpack_add_theme_menu' );
 
+function bp_tpack_admin_notices() {
+	if ( isset( $_GET['page'] ) && 'bp-tpack-options' == $_GET['page'] )
+		return;
+		
+	if ( !(int)get_option( 'bp_tpack_configured' ) ) {
+		?>
+		
+		<div id="message" class="updated fade">
+			<p>You have activated the BuddyPress Template Pack, but you haven't completed the setup process. Visit the <a href="<?php echo add_query_arg( 'page', 'bp-tpack-options', admin_url( 'themes.php' ) ) ?>">BP Compatibility</a> page to wrap up.</p>
+		</div>
+		
+		<?php
+	}
+}
+add_action( 'admin_notices', 'bp_tpack_admin_notices' );
+
 function bp_tpack_theme_menu() {
 	$theme_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
 

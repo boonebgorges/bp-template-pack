@@ -22,6 +22,24 @@ Head to the "Appearance > BP Compatibility" menu and follow the step-by-step ins
 
 == Changelog ==
 
-* 1.0.2 - Feb 22 2010 - fixed shorthand php tag.
-* 1.0.1 - Feb 20 2010 - fixed possible issue with group home template.
-* 1.0 - Feb 18 2010 - initial release.
+= 1.1 =
+* May 27 2011
+* Updates templates to latest 1.2.8
+* Ensures that JavaScript strings are defined
+* First attempts to pull templates from BuddyPress itself
+* Fixes float bug on item-lists
+* Uses bp_include loader file to load main function
+* Removes calls to deprecated bp_core_is_multisite() template
+* Adds admin nag when the setup process has not been completed
+
+= 1.0.2 =
+* Feb 22 2010
+* fixed shorthand php tag.
+
+= 1.0.1 =
+* Feb 20 2010 
+* fixed possible issue with group home template.
+
+= 1.0 =
+* Feb 18 2010
+* initial release.
