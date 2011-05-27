@@ -109,15 +109,14 @@ function bp_tpack_theme_menu() {
 	<div class="wrap">
 		<h2>Making Your Theme BuddyPress Compatible</h2>
 
-		<p>Adding support for BuddyPress to your existing WordPress theme can be a straightforward process by following the setup instructions on this page.</p>
+		<p>Adding support for BuddyPress to your existing WordPress theme is a straightforward process. Follow the setup instructions on this page.</p>
 
 		<?php switch( $step ) {
 			case 1: ?>
 
 				<h2>Step One</h2>
 
-				<p>BuddyPress needs some extra template files in order to display its pages correctly. This plugin contains these extra templates, but right now they are in the plugin directory. They need to be inside your
-					active theme directory to work correctly. First of all we can try moving them automatically, please click the button below to attempt to move the templates:</p>
+				<p>BuddyPress needs some extra template files in order to display its pages correctly. This plugin will attempt to move the necessary files into your current theme. Click the button below to start the process.</p>
 
 				<p><a class="button" href="?page=bp-tpack-options&move=1">Move Template Files</a></p>
 
@@ -129,8 +128,8 @@ function bp_tpack_theme_menu() {
 
 				<?php if ( $error ) : ?>
 
-					<p><strong>Moving templates failed.</strong> There was an error when trying to move the templates automatically. That's okay though as we probably don't have the
-					correct permissions. You're going to have to move the template files manually.</p>
+					<p><strong>Moving templates failed.</strong> There was an error when trying to move the templates automatically. This probably means that we don't have the
+					correct permissions. That's all right - it just means you'll have to move the template files manually.</p>
 
 					<p>You will need to connect to your WordPress files using FTP. When you are connected browse to the following directory:<p>
 
@@ -140,9 +139,7 @@ function bp_tpack_theme_menu() {
 
 					<p><code><?php echo $theme_dir ?></code></p>
 
-					<p>If you decide that you don't want to use a feature of BuddyPress then you can actually ignore the template folders for these features. For example, if you don't want
-						to use the groups and forums features, you can simply not copy the /groups/ and /forums/ template folders to your active theme. If you're confused then just copy
-						all six folders and you'll be fine.</p>
+					<p>If you decide that you don't want to use a feature of BuddyPress then you can actually ignore the template folders for these features. For example, if you don't want to use the groups and forums features, you can simply not copy the /groups/ and /forums/ template folders to your active theme. (If you're not sure what to do, just copy all six folders over to your theme directory.)</p>
 
 					<p>Once you have correctly copied the folders into your active theme, please use the button below to move onto step three.</p>
 
@@ -150,7 +147,7 @@ function bp_tpack_theme_menu() {
 
 				<?php else : ?>
 
-					<p><strong>Templates moved successfully!</strong> This is great news, BuddyPress templates are now in the correct position in your theme which means you can skip step two and <a href="?page=bp-tpack-options">move on to step three</a>.</p>
+					<p><strong>Templates moved successfully!</strong> Great news! BuddyPress templates are now in the correct position in your theme, which means you can skip step two and <a href="?page=bp-tpack-options">move on to step three</a>.</p>
 
 				<?php endif; ?>
 
@@ -158,7 +155,7 @@ function bp_tpack_theme_menu() {
 		<?php case 3: ?>
 			<h2>Step Three</h2>
 
-			<p>Now that the template files are in the correct location, click through your site (you can come back to this page at any point). You should see a BuddyPress admin bar at the top of the page, try visiting some of the links in the "My Account" menu. You should find that BuddyPress pages now work and are displayed.</p>
+			<p>Now that the template files are in the correct location, click through your site (you can come back to this page at any point). You should see a BuddyPress admin bar at the top of the page. Try visiting some of the links in the "My Account" menu. You should find that BuddyPress pages now work and are displayed.</p>
 
 			<p>If you find that the pages are not quite aligned correctly, or the content is overlapping the sidebar, you will need to tweak the template HTML. Please follow the "fixing alignment" instructions below. If the content in your pages is aligned in the correct place then you can skip to the "Finishing Up" section at the bottom of this page.</p>
 
@@ -183,7 +180,7 @@ function bp_tpack_theme_menu() {
 
 </code></pre></p>
 
-			<p>If BuddyPress pages are not aligned correctly then you will need to modify some of the templates to match your theme's HTML structure. The best way to do this is to FTP to your theme's files at:</p>
+			<p>If BuddyPress pages are not aligned correctly, then you will need to modify some of the templates to match your theme's HTML structure. The best way to do this is to FTP to your theme's files at:</p>
 
 			<p><code><?php echo $theme_dir ?></code></p>
 
