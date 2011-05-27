@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: apeatling
 Tags: buddypress, themes, compatibility, convert, integration
-Requires at least: WordPress 2.9.1 / BuddyPress 1.2
-Tested up to: WordPress 2.9.2 / BuddyPress 1.2
+Requires at least: WordPress 3.0 / BuddyPress 1.2
+Tested up to: WordPress 3.2 / BuddyPress 1.2.8
 Stable tag: 1.0.2
 
 == Description ==
