@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
-	<div id="container">
-		<div id="content">
+	<div id="content">
+		<div class="padder">
 
 			<?php if ( !is_user_logged_in() ) : ?>
 				<h3><?php _e( 'Site Activity', 'buddypress' ) ?></h3>
@@ -57,7 +57,7 @@
 
 			<div class="item-list-tabs no-ajax" id="subnav">
 				<ul>
-					<li class="feed"><a href="<?php bp_sitewide_activity_feed_link() ?>" title="RSS Feed"><?php _e( 'RSS', 'buddypress' ) ?></a></li>
+					<li class="feed"><a href="<?php bp_sitewide_activity_feed_link() ?>" title="<?php _e( 'RSS Feed', 'buddypress' ); ?>"><?php _e( 'RSS', 'buddypress' ) ?></a></li>
 
 					<?php do_action( 'bp_activity_syndication_options' ) ?>
 
@@ -65,8 +65,11 @@
 						<select>
 							<option value="-1"><?php _e( 'No Filter', 'buddypress' ) ?></option>
 							<option value="activity_update"><?php _e( 'Show Updates', 'buddypress' ) ?></option>
-							<option value="new_blog_post"><?php _e( 'Show Blog Posts', 'buddypress' ) ?></option>
-							<option value="new_blog_comment"><?php _e( 'Show Blog Comments', 'buddypress' ) ?></option>
+
+							<?php if ( bp_is_active( 'blogs' ) ) : ?>
+								<option value="new_blog_post"><?php _e( 'Show Blog Posts', 'buddypress' ) ?></option>
+								<option value="new_blog_comment"><?php _e( 'Show Blog Comments', 'buddypress' ) ?></option>
+							<?php endif; ?>
 
 							<?php if ( bp_is_active( 'forums' ) ) : ?>
 								<option value="new_forum_topic"><?php _e( 'Show New Forum Topics', 'buddypress' ) ?></option>
@@ -96,8 +99,8 @@
 
 			<?php do_action( 'bp_after_directory_activity_content' ) ?>
 
-		</div><!-- #content -->
-	</div><!-- #container -->
+		</div><!-- .padder -->
+	</div><!-- #content -->
 
 	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 

@@ -2,8 +2,8 @@
 
 <?php get_header(); ?>
 
-	<div id="container">
-		<div id="content">
+	<div id="content">
+		<div class="padder">
 
 		<?php do_action( 'bp_before_activation_page' ) ?>
 
@@ -50,8 +50,8 @@
 
 		<?php do_action( 'bp_after_activation_page' ) ?>
 
-		</div><!-- #content -->
-	</div><!-- #container -->
+		</div><!-- .padder -->
+	</div><!-- #content -->
 
 	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 

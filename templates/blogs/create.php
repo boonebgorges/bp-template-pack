@@ -1,9 +1,9 @@
 <?php get_header() ?>
 
-	<?php do_action( 'bp_before_create_blog_content' ) ?>
+	<?php do_action( 'bp_before_directory_blogs_content' ) ?>
 
-	<div id="container">
-		<div id="content">
+	<div id="content">
+		<div class="padder">
 
 		<?php do_action( 'template_notices' ) ?>
 
@@ -25,12 +25,12 @@
 
 		<?php do_action( 'bp_after_create_blog_content' ) ?>
 
-		</div><!-- #content -->
-	</div><!-- #container -->
+		</div><!-- .padder -->
+	</div><!-- #content -->
 
 	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 
-	<?php do_action( 'bp_after_create_blog_content' ) ?>
+	<?php do_action( 'bp_after_directory_blogs_content' ) ?>
 
 <?php get_footer() ?>
 
