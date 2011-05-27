@@ -21,6 +21,21 @@ function bp_tpack_init() {
 
 		/* Load the default BuddyPress javascript */
 		wp_enqueue_script( 'bp-js', BP_PLUGIN_URL . '/bp-themes/bp-default/_inc/global.js', array( 'jquery' ) );
+		
+		// Add words that we need to use in JS to the end of the page so they can be 
+		// translated and still used.
+		$params = array(
+			'my_favs'           => __( 'My Favorites', 'buddypress' ),
+			'accepted'          => __( 'Accepted', 'buddypress' ),
+			'rejected'          => __( 'Rejected', 'buddypress' ),
+			'show_all_comments' => __( 'Show all comments for this thread', 'buddypress' ),
+			'show_all'          => __( 'Show all', 'buddypress' ),
+			'comments'          => __( 'comments', 'buddypress' ),
+			'close'             => __( 'Close', 'buddypress' ),
+			'mention_explain'   => sprintf( __( "%s is a unique identifier for %s that you can type into any message on this site. %s will be sent a notification and a link to your message any time you use it.", 'buddypress' ), '@' . bp_get_displayed_user_username(), bp_get_user_firstname( bp_get_displayed_user_fullname() ), bp_get_user_firstname( bp_get_displayed_user_fullname() ) )
+		);
+	
+		wp_localize_script( 'bp-js', 'BP_DTheme', $params );
 	}
 
 	/* Add the wireframe BP page styles */
