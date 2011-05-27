@@ -188,7 +188,7 @@ function bp_tpack_theme_menu() {
 				<li><?php echo '/members/single/plugins.php' ?></li>
 				<li><?php echo '/registration/register.php' ?></li>
 
-				<?php if ( bp_core_is_multisite() ) : ?>
+				<?php if ( is_multisite() ) : ?>
 					<li><?php echo '/blogs/create.php' ?></li>
 					<li><?php echo '/registration/activate.php' ?></li>
 				<?php endif; ?>
@@ -250,7 +250,7 @@ function bp_tpack_theme_menu() {
 					<li>Forums: <a href="<?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?></a></li>
 					<li>Register: <a href="<?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?></a> (registration must be enabled)</li>
 
-					<?php if ( bp_core_is_multisite() ) : ?>
+					<?php if ( is_multisite() ) : ?>
 						<li>Blogs: <a href="<?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?></a></li>
 					<?php endif; ?>
 				</ul>
