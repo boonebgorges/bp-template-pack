@@ -251,7 +251,7 @@ function bp_tpack_theme_menu() {
 
 function bp_tpack_move_templates() {
 	$destination_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
-	$source_dir = WP_CONTENT_DIR . '/plugins/' . basename( dirname( __FILE__ ) ) . '/templates/';
+	$source_dir = BP_PLUGIN_DIR . '/bp-themes/bp-default/';
 
 	$dirs = array( 'activity', 'blogs', 'forums', 'groups', 'members', 'registration' );
 

@@ -43,7 +43,10 @@ ul.item-list {
 	padding: 0;
 	list-style: none;
 }
-	ul.item-list li { position: relative; }
+	ul.item-list li { 
+		position: relative;
+		clear: left;
+	}
 	ul.item-list div.item-avatar {
 		float: left;
 	}
