@@ -3,7 +3,7 @@ Contributors: apeatling, boonebgorges
 Tags: buddypress, themes, compatibility, convert, integration
 Requires at least: WordPress 3.0 / BuddyPress 1.2
 Tested up to: WordPress 3.2 / BuddyPress 1.2.8
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 == Description ==
 
@@ -21,6 +21,9 @@ Activate the plugin in the "Plugins" admin panel using the "Activate" link.
 Head to the "Appearance > BP Compatibility" menu and follow the step-by-step instructions.
 
 == Changelog ==
+
+= 1.1.1 =
+* Replaces deprecated is_site_admin() with is_super_admin()
 
 = 1.1 =
 * May 27 2011
