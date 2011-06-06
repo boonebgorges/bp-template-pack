@@ -22,6 +22,9 @@ Head to the "Appearance > BP Compatibility" menu and follow the step-by-step ins
 
 == Changelog ==
 
+= 1.1.2 =
+* Adds hooks for BP action buttons
+
 = 1.1.1 =
 * Replaces deprecated is_site_admin() with is_super_admin()
 
