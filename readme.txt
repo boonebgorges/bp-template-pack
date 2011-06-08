@@ -22,6 +22,9 @@ Head to the "Appearance > BP Compatibility" menu and follow the step-by-step ins
 
 == Changelog ==
 
+= 1.1.3 =
+* Fixes add_theme_page() param that might cause permissions errors on some setups
+
 = 1.1.2 =
 * Adds hooks for BP action buttons
 

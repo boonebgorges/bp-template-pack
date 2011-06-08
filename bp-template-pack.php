@@ -45,7 +45,7 @@ function bp_tpack_init() {
 add_action( 'bp_init', 'bp_tpack_init' );
 
 function bp_tpack_add_theme_menu() {
-	add_theme_page( __( 'BP Compatibility', 'bp-template-pack' ), __( 'BP Compatibility', 'bp-template-pack' ), current_user_can( 'switch_themes' ), 'bp-tpack-options', 'bp_tpack_theme_menu' );
+	add_theme_page( __( 'BP Compatibility', 'bp-template-pack' ), __( 'BP Compatibility', 'bp-template-pack' ), 'switch_themes', 'bp-tpack-options', 'bp_tpack_theme_menu' );
 }
 add_action( 'admin_menu', 'bp_tpack_add_theme_menu' );
 
