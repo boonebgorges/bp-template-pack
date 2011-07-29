@@ -3,7 +3,7 @@ Contributors: apeatling, boonebgorges
 Tags: buddypress, themes, compatibility, convert, integration
 Requires at least: WordPress 3.0 / BuddyPress 1.2
 Tested up to: WordPress 3.2 / BuddyPress 1.2.8
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 == Description ==
 
@@ -21,6 +21,9 @@ Activate the plugin in the "Plugins" admin panel using the "Activate" link.
 Head to the "Appearance > BP Compatibility" menu and follow the step-by-step instructions.
 
 == Changelog ==
+
+= 1.1.4 =
+* Updates to BP 1.2.9 template files
 
 = 1.1.3 =
 * Fixes add_theme_page() param that might cause permissions errors on some setups
