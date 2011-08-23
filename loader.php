@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Plugin Name: BuddyPress Template Pack
 Plugin URI: http://wordpress.org/extend/plugins/bp-template-pack/
@@ -8,12 +8,22 @@ Version: 1.2
 Author URI: http://buddypress.org
 */
 
-/*****
+/**
+ * BP Template Pack
+ *
+ * @package BP_TPack
+ * @subpackage Loader
+ */
+
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
+/**
  * Initialize the plugin once BuddyPress has initialized.
  */
 function bp_tpack_loader() {
 	if ( is_admin() )
-		include( dirname( __FILE__ ) . '/bp-template-pack.php' );
+		include( dirname( __FILE__ ) . '/bpt-admin.php' );
 
 	include( dirname( __FILE__ ) . '/bpt-functions.php' );
 }
