@@ -1,5 +1,19 @@
 <?php
+/**
+ * BP Template Pack Admin
+ *
+ * Adds admin page to copy over BP templates and deactivation hooks.
+ *
+ * @package BP_TPack
+ * @subpackage Admin
+ */
 
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
+/**
+ * When BPT is deactivated, remove a few options from the DB
+ */
 function bp_tpack_deactivate() {
 	/* Cleanup */
 	delete_option( 'bp_tpack_disable_js' );
@@ -8,63 +22,36 @@ function bp_tpack_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'bp_tpack_deactivate' );
 
-function bp_tpack_init() {
-	global $wp_themes;
-
-	/* Check to make sure the active theme is not bp-default */
-	if ( 'bp-default' == get_option( 'template' ) )
-		return false;
-
-	/* Load the default BuddyPress AJAX functions */
-	if ( !(int)get_option( 'bp_tpack_disable_js' ) ) {
-		require_once( BP_PLUGIN_DIR . '/bp-themes/bp-default/_inc/ajax.php' );
-
-		/* Load the default BuddyPress javascript */
-		wp_enqueue_script( 'bp-js', BP_PLUGIN_URL . '/bp-themes/bp-default/_inc/global.js', array( 'jquery' ) );
-		
-		// Add words that we need to use in JS to the end of the page so they can be 
-		// translated and still used.
-		$params = array(
-			'my_favs'           => __( 'My Favorites', 'buddypress' ),
-			'accepted'          => __( 'Accepted', 'buddypress' ),
-			'rejected'          => __( 'Rejected', 'buddypress' ),
-			'show_all_comments' => __( 'Show all comments for this thread', 'buddypress' ),
-			'show_all'          => __( 'Show all', 'buddypress' ),
-			'comments'          => __( 'comments', 'buddypress' ),
-			'close'             => __( 'Close', 'buddypress' ),
-			'mention_explain'   => sprintf( __( "%s is a unique identifier for %s that you can type into any message on this site. %s will be sent a notification and a link to your message any time you use it.", 'buddypress' ), '@' . bp_get_displayed_user_username(), bp_get_user_firstname( bp_get_displayed_user_fullname() ), bp_get_user_firstname( bp_get_displayed_user_fullname() ) )
-		);
-	
-		wp_localize_script( 'bp-js', 'BP_DTheme', $params );
-	}
-
-	/* Add the wireframe BP page styles */
-	if ( !(int)get_option( 'bp_tpack_disable_css' ) )
-		wp_enqueue_style( 'bp-css', plugins_url( $path = basename( dirname( __FILE__ ) ) ) . '/bp.css' );
-}
-add_action( 'bp_init', 'bp_tpack_init' );
-
+/**
+ * Adds the BPT admin page under the "Themes" menu.
+ */
 function bp_tpack_add_theme_menu() {
 	add_theme_page( __( 'BP Compatibility', 'bp-template-pack' ), __( 'BP Compatibility', 'bp-template-pack' ), 'switch_themes', 'bp-tpack-options', 'bp_tpack_theme_menu' );
 }
 add_action( 'admin_menu', 'bp_tpack_add_theme_menu' );
 
+/**
+ * Adds an admin notice if BPT hasn't been setup yet.
+ */
 function bp_tpack_admin_notices() {
 	if ( isset( $_GET['page'] ) && 'bp-tpack-options' == $_GET['page'] )
 		return;
-		
+
 	if ( !(int)get_option( 'bp_tpack_configured' ) ) {
 		?>
-		
+
 		<div id="message" class="updated fade">
 			<p>You have activated the BuddyPress Template Pack, but you haven't completed the setup process. Visit the <a href="<?php echo add_query_arg( 'page', 'bp-tpack-options', admin_url( 'themes.php' ) ) ?>">BP Compatibility</a> page to wrap up.</p>
 		</div>
-		
+
 		<?php
 	}
 }
 add_action( 'admin_notices', 'bp_tpack_admin_notices' );
 
+/**
+ * Output the BPT admin page
+ */
 function bp_tpack_theme_menu() {
 	$theme_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
 
@@ -133,13 +120,13 @@ function bp_tpack_theme_menu() {
 
 					<p>You will need to connect to your WordPress files using FTP. When you are connected browse to the following directory:<p>
 
-					<p><code><?php echo dirname( __FILE__ ) . '/templates/' ?></code></p>
+					<p><code><?php echo BP_PLUGIN_DIR . '/bp-themes/bp-default/' ?></code></p>
 
-					<p>In this directory you will find six folders. If you want to use all of the features of BuddyPress then you must move all six directories to the following folder:</p>
+					<p>In this directory you will find six folders (/activity/, /blogs/, /forums/, /groups/, /members/, /registration/). If you want to use all of the features of BuddyPress then you must move these six directories to the following folder:</p>
 
 					<p><code><?php echo $theme_dir ?></code></p>
 
-					<p>If you decide that you don't want to use a feature of BuddyPress then you can actually ignore the template folders for these features. For example, if you don't want to use the groups and forums features, you can simply not copy the /groups/ and /forums/ template folders to your active theme. (If you're not sure what to do, just copy all six folders over to your theme directory.)</p>
+					<p>If you decide that you don't want to use a feature of BuddyPress, then you can actually ignore the template folders for these features. For example, if you don't want to use the groups and forums features, you can simply avoid copying the /groups/ and /forums/ template folders to your active theme. (If you're not sure what to do, just copy all six folders over to your theme directory.)</p>
 
 					<p>Once you have correctly copied the folders into your active theme, please use the button below to move onto step three.</p>
 
@@ -186,7 +173,18 @@ function bp_tpack_theme_menu() {
 
 			<p>Then open up the <code>page.php</code> file (if this does not exist use <code>index.php</code>). Make note of the HTML template structure of the file, specifically the <code>&lt;div&gt;</code> tags that surround the content and sidebar.</p>
 
-			<p>You will need to change the HTML structure in the BuddyPress templates that you copied into your theme to match the structure in your <code>page.php</code> or <code>index.php</code> file. The files that you need to edit are as follows (leave out any folders you have not copied over in step two):</p>
+			<p>You will need to change the HTML structure in the BuddyPress templates that you copied into your theme to match the structure in your <code>page.php</code> or <code>index.php</code> file.</p>
+
+			<?php if ( version_compare( BP_VERSION, '1.3' ) > 0 ) : ?>
+				<p>In BuddyPress 1.5, the easiest way to do this is to make copies of your theme's <code>header.php</code>, <code>sidebar.php</code> and <code>footer.php</code> and rename them to <code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>.</p>
+
+				<p>Then you can alter the structure of these new template files (<code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>) to resemble your theme's page.php (or index.php).</p>
+
+				<p>The older method consisted of manually modifying the following files:</p>
+
+			<?php else : ?>
+				<p>The files that you need to edit are as follows (leave out any folders you have not copied over in step two):</p>
+			<?php endif; ?>
 
 			<ul style="list-style: disc; margin-left: 40px;">
 				<li><?php echo '/activity/index.php' ?></li>
@@ -206,6 +204,10 @@ function bp_tpack_theme_menu() {
 					<li><?php echo '/registration/activate.php' ?></li>
 				<?php endif; ?>
 			</ul>
+
+			<?php if ( version_compare( BP_VERSION, '1.3' ) > 0 ) : ?>
+				<p>So as you can see, modifying these three files (<code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>) instead of 10+ files makes things a lot more easier!</p>
+			<?php endif; ?>
 
 			<p>Once you are done matching up the HTML structure of your theme in these template files, please take another look through your site. You should find that BuddyPress pages now fit inside the content structure of your theme.</p>
 
@@ -277,6 +279,11 @@ function bp_tpack_theme_menu() {
 	}
 }
 
+/**
+ * Function to copy over bp-default's main templates to the current WP theme
+ *
+ * @uses bp_tpack_recurse_copy()
+ */
 function bp_tpack_move_templates() {
 	$destination_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
 	$source_dir = BP_PLUGIN_DIR . '/bp-themes/bp-default/';
@@ -291,6 +298,13 @@ function bp_tpack_move_templates() {
 	return true;
 }
 
+/**
+ * Helper function to copy files from one folder over to another
+ *
+ * @param string $src Location of source directory to copy
+ * @param string $dst Location of destination directory where the copied files should reside
+ * @see bp_tpack_move_templates()
+ */
 function bp_tpack_recurse_copy( $src, $dst ) {
 	$dir = @opendir( $src );
 
@@ -312,93 +326,5 @@ function bp_tpack_recurse_copy( $src, $dst ) {
 
 	return true;
 }
-
-
-/*****
- * Add support for showing the activity stream as the front page of the site
- */
-
-/* Filter the dropdown for selecting the page to show on front to include "Activity Stream" */
-function bp_tpack_wp_pages_filter( $page_html ) {
-	if ( 'page_on_front' != substr( $page_html, 14, 13 ) )
-		return $page_html;
-
-	$selected = false;
-	$page_html = str_replace( '</select>', '', $page_html );
-
-	if ( bp_tpack_page_on_front() == 'activity' )
-		$selected = ' selected="selected"';
-
-	$page_html .= '<option class="level-0" value="activity"' . $selected . '>' . __( 'Activity Stream', 'buddypress' ) . '</option></select>';
-	return $page_html;
-}
-add_filter( 'wp_dropdown_pages', 'bp_tpack_wp_pages_filter' );
-
-/* Hijack the saving of page on front setting to save the activity stream setting */
-function bp_tpack_page_on_front_update( $oldvalue, $newvalue ) {
-	if ( !is_admin() || !is_super_admin() )
-		return false;
-
-	if ( 'activity' == $_POST['page_on_front'] )
-		return 'activity';
-	else
-		return $oldvalue;
-}
-add_action( 'pre_update_option_page_on_front', 'bp_tpack_page_on_front_update', 10, 2 );
-
-/* Load the activity stream template if settings allow */
-function bp_tpack_page_on_front_template( $template ) {
-	global $wp_query;
-
-	if ( empty( $wp_query->post->ID ) )
-		return locate_template( array( 'activity/index.php' ), false );
-	else
-		return $template;
-}
-add_filter( 'page_template', 'bp_tpack_page_on_front_template' );
-
-/* Return the ID of a page set as the home page. */
-function bp_tpack_page_on_front() {
-	if ( 'page' != get_option( 'show_on_front' ) )
-		return false;
-
-	return apply_filters( 'bp_tpack_page_on_front', get_option( 'page_on_front' ) );
-}
-
-/* Force the page ID as a string to stop the get_posts query from kicking up a fuss. */
-function bp_tpack_fix_get_posts_on_activity_front() {
-	global $wp_query;
-
-	if ( !empty($wp_query->query_vars['page_id']) && 'activity' == $wp_query->query_vars['page_id'] )
-		$wp_query->query_vars['page_id'] = '"activity"';
-}
-add_action( 'pre_get_posts', 'bp_tpack_fix_get_posts_on_activity_front' );
-
-/**
- * Hooks BP's action buttons
- */
-function bp_tpack_add_buttons() {
-	// Member Buttons
-	if ( bp_is_active( 'friends' ) )
-		add_action( 'bp_member_header_actions',    'bp_add_friend_button' );
-	
-	if ( bp_is_active( 'activity' ) )
-		add_action( 'bp_member_header_actions',    'bp_send_public_message_button' );
-	
-	if ( bp_is_active( 'messages' ) )
-		add_action( 'bp_member_header_actions',    'bp_send_private_message_button' );
-	
-	// Group Buttons
-	if ( bp_is_active( 'groups' ) ) {
-		add_action( 'bp_group_header_actions',     'bp_group_join_button' );
-		add_action( 'bp_group_header_actions',     'bp_group_new_topic_button' );
-		add_action( 'bp_directory_groups_actions', 'bp_group_join_button' );
-	}
-	
-	// Blog Buttons
-	if ( bp_is_active( 'blogs' ) )
-		add_action( 'bp_directory_blogs_actions',  'bp_blogs_visit_blog_button' );
-}
-add_action( 'bp_init', 'bp_tpack_add_buttons' );
 
 ?>
