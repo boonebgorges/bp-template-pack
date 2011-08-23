@@ -66,9 +66,6 @@ function bp_tpack_enqueue_scripts() {
 	if ( get_option( 'bp_tpack_disable_js' ) )
 		return;
 
-	// Bump this when changes are made to bust cache
-
-
 	// Add words that we need to use in JS to the end of the page so they can be translated and still used.
 	$params = array(
 		'my_favs'           => __( 'My Favorites', 'buddypress' ),
@@ -82,7 +79,9 @@ function bp_tpack_enqueue_scripts() {
 
 	// BP 1.5+
 	if ( version_compare( BP_VERSION, '1.3' ) > 0 ) {
+		// Bump this when changes are made to bust cache
 		$version            = '20110818';
+
 		$params['view']     = __( 'View', 'buddypress' );
 	}
 	// BP 1.2.x

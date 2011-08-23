@@ -259,14 +259,14 @@ function bp_tpack_theme_menu() {
 
 			<p>You may want to add new navigation tabs or links to your theme to link to BuddyPress directory pages. The default set of links are:</p>
 				<ul>
-					<li>Activity: <a href="<?php echo get_option('home') . '/' . BP_ACTIVITY_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_ACTIVITY_SLUG . '/'; ?></a></li>
-					<li>Members: <a href="<?php echo get_option('home') . '/' . BP_MEMBERS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_MEMBERS_SLUG . '/'; ?></a></li>
-					<li>Groups: <a href="<?php echo get_option('home') . '/' . BP_GROUPS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_GROUPS_SLUG . '/'; ?></a></li>
-					<li>Forums: <a href="<?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?></a></li>
-					<li>Register: <a href="<?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?></a> (registration must be enabled)</li>
+					<li>Activity: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_ACTIVITY_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_ACTIVITY_SLUG . '/'; ?></a></li>
+					<li>Members: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_MEMBERS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_MEMBERS_SLUG . '/'; ?></a></li>
+					<li>Groups: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_GROUPS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_GROUPS_SLUG . '/'; ?></a></li>
+					<li>Forums: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_FORUMS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?></a></li>
+					<li>Register: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_REGISTER_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?></a> (registration must be enabled)</li>
 
 					<?php if ( is_multisite() ) : ?>
-						<li>Blogs: <a href="<?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?>"><?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?></a></li>
+						<li>Blogs: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_BLOGS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?></a></li>
 					<?php endif; ?>
 				</ul>
 
@@ -326,5 +326,17 @@ function bp_tpack_recurse_copy( $src, $dst ) {
 
 	return true;
 }
+
+if ( !function_exists( 'bp_get_root_slug' ) ) :
+/**
+ * BP 1.2-compatible version of bp_get_root_slug()
+ */
+function bp_get_root_slug( $slug ) {
+	if ( empty ( $slug ) )
+		return false;
+
+	return $slug;
+}
+endif;
 
 ?>
