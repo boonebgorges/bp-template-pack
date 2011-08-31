@@ -124,7 +124,7 @@ function bp_tpack_enqueue_styles() {
 	}
 
 	// Add the wireframe BP page styles
-	wp_enqueue_style( 'bp', plugin_dir_url ( __FILE__ ) . $stylesheet, array(), $version );
+	wp_enqueue_style( 'bp', plugins_url( '/bp-template-pack/' ) . $stylesheet, array(), $version );
 }
 add_action( 'wp_print_styles', 'bp_tpack_enqueue_styles' );
 
