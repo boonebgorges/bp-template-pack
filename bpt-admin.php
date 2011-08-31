@@ -101,9 +101,11 @@ function bp_tpack_theme_menu() {
 		<?php switch( $step ) {
 			case 1: ?>
 
-				<h2>Step One</h2>
+				<h2>Step One: Moving template files automatically</h2>
 
-				<p>BuddyPress needs some extra template files in order to display its pages correctly. This plugin will attempt to move the necessary files into your current theme. Click the button below to start the process.</p>
+				<p>BuddyPress needs some extra template files in order to display its pages correctly. This plugin will attempt to automatically move the necessary files into your current theme.</p>
+
+				<p>Click the button below to start the process.</p>
 
 				<p><a class="button" href="?page=bp-tpack-options&move=1">Move Template Files</a></p>
 
@@ -111,9 +113,9 @@ function bp_tpack_theme_menu() {
 
 		<?php case 2: ?>
 
-				<h2>Step Two</h2>
-
 				<?php if ( $error ) : ?>
+
+					<h2>Step Two: Moving templates manually</h2>
 
 					<p><strong>Moving templates failed.</strong> There was an error when trying to move the templates automatically. This probably means that we don't have the
 					correct permissions. That's all right - it just means you'll have to move the template files manually.</p>
@@ -134,17 +136,21 @@ function bp_tpack_theme_menu() {
 
 				<?php else : ?>
 
-					<p><strong>Templates moved successfully!</strong> Great news! BuddyPress templates are now in the correct position in your theme, which means you can skip step two and <a href="?page=bp-tpack-options">move on to step three</a>.</p>
+					<h2>Templates moved successfully!</h2>
+
+					<p>Great news! BuddyPress templates are now in the correct position in your theme, which means that we can skip Step Two: Moving Templates Manually, and move directly to Step Three. Cool!</p>
+
+					<p><a class="button" href="?page=bp-tpack-options">Continue to Step Three</a></p>
 
 				<?php endif; ?>
 
 		<?php break; ?>
 		<?php case 3: ?>
-			<h2>Step Three</h2>
+			<h2>Step Three: Tweaking your layout</h2>
 
-			<p>Now that the template files are in the correct location, click through your site (you can come back to this page at any point). You should see a BuddyPress admin bar at the top of the page. Try visiting some of the links in the "My Account" menu. You should find that BuddyPress pages now work and are displayed.</p>
+			<p>Now that the template files are in the correct location, <a href="<?php echo get_bloginfo( 'url' ) ?>" target="_blank">check out your site</a>. (You can come back to the current page at any time, by visiting Dashboard > Appearance > BP Compatibility.) You should see a BuddyPress admin bar at the top of the page. Try visiting some of the links in the "My Account" menu. If everything has gone right up to this point, you should be able to see your BuddyPress content.</p>
 
-			<p>If you find that the pages are not quite aligned correctly, or the content is overlapping the sidebar, you will need to tweak the template HTML. Please follow the "fixing alignment" instructions below. If the content in your pages is aligned in the correct place then you can skip to the "Finishing Up" section at the bottom of this page.</p>
+			<p>If you find that the pages are not quite aligned correctly, or the content is overlapping the sidebar, you may need to tweak the template HTML. Please follow the "fixing alignment" instructions below. If the content in your pages is aligned to your satisfaction, then you can skip to the "Finishing Up" section at the bottom of this page.</p>
 
 			<h3>Fixing Alignment</h3>
 
@@ -167,11 +173,11 @@ function bp_tpack_theme_menu() {
 
 </code></pre></p>
 
-			<p>If BuddyPress pages are not aligned correctly, then you will need to modify some of the templates to match your theme's HTML structure. The best way to do this is to FTP to your theme's files at:</p>
+			<p>If BuddyPress pages are not aligned correctly, then you may need to modify some of the templates to match your theme's HTML structure. The best way to do this is to access your theme's files, via FTP, at:</p>
 
 			<p><code><?php echo $theme_dir ?></code></p>
 
-			<p>Then open up the <code>page.php</code> file (if this does not exist use <code>index.php</code>). Make note of the HTML template structure of the file, specifically the <code>&lt;div&gt;</code> tags that surround the content and sidebar.</p>
+			<p>Open up the <code>page.php</code> file (if this does not exist, use <code>index.php</code>). Make note of the HTML template structure of the file, specifically the <code>&lt;div&gt;</code> tags that surround the content and sidebar.</p>
 
 			<p>You will need to change the HTML structure in the BuddyPress templates that you copied into your theme to match the structure in your <code>page.php</code> or <code>index.php</code> file.</p>
 
@@ -213,7 +219,7 @@ function bp_tpack_theme_menu() {
 
 			<h3>Finishing Up</h3>
 
-			<p>You're now all done with the conversion process. Your WordPress theme will now happily provide BuddyPress compatibility support. Once you hit the finish button you will be presented with a new permanent theme options page allowing you to tweak some settings.</p>
+			<p>You're now all done with the conversion process. Your WordPress theme will now happily provide BuddyPress compatibility support. Once you hit the finish button you will be presented with a new permanent theme options page, which will allow you to tweak some settings.</p>
 
 			<p><a href="?page=bp-tpack-options&finish=1" class="button-primary">Finish</a></p>
 			<p>&nbsp;</p>
