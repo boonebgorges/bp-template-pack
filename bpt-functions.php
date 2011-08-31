@@ -128,6 +128,21 @@ function bp_tpack_enqueue_styles() {
 }
 add_action( 'wp_print_styles', 'bp_tpack_enqueue_styles' );
 
+if ( !function_exists( 'bp_tpack_use_wplogin' ) ) :
+/**
+ * BP Template Pack doesn't use bp-default's built-in sidebar login block,
+ * so during no access requests, we need to redirect them to wp-login for
+ * authentication.
+ *
+ * @since 1.2
+ */
+function bp_tpack_use_wplogin() {
+	// returning 2 will automatically use wp-login
+	return 2;
+}
+add_filter( 'bp_no_access_mode', 'bp_tpack_use_wplogin' );
+endif;
+
 /**
  * Hooks into the 'bp_get_activity_action_pre_meta' action to add secondary activity avatar support
  *
