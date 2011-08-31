@@ -259,13 +259,23 @@ function bp_tpack_theme_menu() {
 
 			<p>You may want to add new navigation tabs or links to your theme to link to BuddyPress directory pages. The default set of links are:</p>
 				<ul>
-					<li>Activity: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_ACTIVITY_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_ACTIVITY_SLUG . '/'; ?></a></li>
+					<?php if ( bp_is_active( 'activity' ) ) : ?>
+						<li>Activity: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_ACTIVITY_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_ACTIVITY_SLUG . '/'; ?></a></li>
+					<?php endif ?>
+
 					<li>Members: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_MEMBERS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_MEMBERS_SLUG . '/'; ?></a></li>
-					<li>Groups: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_GROUPS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_GROUPS_SLUG . '/'; ?></a></li>
-					<li>Forums: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_FORUMS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?></a></li>
+
+					<?php if ( bp_is_active( 'groups' ) ) : ?>
+						<li>Groups: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_GROUPS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_GROUPS_SLUG . '/'; ?></a></li>
+					<?php endif ?>
+
+					<?php if ( bp_is_active( 'forums' ) ) : ?>
+						<li>Forums: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_FORUMS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_FORUMS_SLUG . '/'; ?></a></li>
+					<?php endif ?>
+
 					<li>Register: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_REGISTER_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_REGISTER_SLUG . '/'; ?></a> (registration must be enabled)</li>
 
-					<?php if ( is_multisite() ) : ?>
+					<?php if ( is_multisite() && bp_is_active( 'blogs' ) ) : ?>
 						<li>Blogs: <a href="<?php echo get_option('home') . '/' . bp_get_root_slug( BP_BLOGS_SLUG ) . '/'; ?>"><?php echo get_option('home') . '/' . BP_BLOGS_SLUG . '/'; ?></a></li>
 					<?php endif; ?>
 				</ul>
