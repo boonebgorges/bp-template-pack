@@ -253,7 +253,11 @@ function bp_tpack_theme_menu() {
 		</form>
 
 		<div style="float: left; width: 37%;">
-			<p style="line-height: 180%; border: 1px solid #eee; background: #fff; padding: 5px 10px;"><strong>NOTE:</strong> To remove the "BuddyPress is ready" message you will need to add a "buddypress" tag to your theme. You can do this by editing the <code>style.css</code> file of your active theme and adding the tag to the "Tags:" line in the comment header.</p>
+
+			<?php /* In BP 1.5+, we remove the "BuddyPress is ready" message dynamically */ ?>
+			<?php if ( version_compare( BP_VERSION, '1.3' ) <= 0 ) : ?>
+				<p style="line-height: 180%; border: 1px solid #eee; background: #fff; padding: 5px 10px;"><strong>NOTE:</strong> To remove the "BuddyPress is ready" message you will need to add a "buddypress" tag to your theme. You can do this by editing the <code>style.css</code> file of your active theme and adding the tag to the "Tags:" line in the comment header.</p>
+			<?php endif ?>
 
 			<h4>Navigation Links</h4>
 
@@ -307,6 +311,34 @@ function bp_tpack_move_templates() {
 
 	return true;
 }
+
+/**
+ * Removes the "you'll need to activate a BuddyPress-compatible theme" message from the admin when
+ * the plugin is up and running successfully
+ *
+ * @since 1.3
+ */
+function bp_tpack_remove_compatibility_message() {
+	global $bp;
+
+	// Only works with BP 1.5 or greater
+	if ( !empty( $bp->admin->notices ) ) {
+		// Check to see whether we've completed the setup
+		if ( get_option( 'bp_tpack_configured' ) ) {
+			// Remove the message. They're not semantically keyed, so this is a hack
+			// Search for the themes.php link, which will work under translations
+			foreach( $bp->admin->notices as $key => $notice ) {
+				if ( false !== strpos( $notice, 'themes.php' ) ) {
+					unset( $bp->admin->notices[$key] );
+				}
+			}
+
+			// Reset the indexes
+			$bp->admin->notices = array_values( $bp->admin->notices );
+		}
+	}
+}
+add_action( 'admin_notices', 'bp_tpack_remove_compatibility_message', 2 );
 
 /**
  * Helper function to copy files from one folder over to another
