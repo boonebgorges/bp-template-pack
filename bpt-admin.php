@@ -34,8 +34,20 @@ add_action( 'admin_menu', 'bp_tpack_add_theme_menu' );
  * Adds an admin notice if BPT hasn't been setup yet.
  */
 function bp_tpack_admin_notices() {
-	if ( isset( $_GET['page'] ) && 'bp-tpack-options' == $_GET['page'] )
+	global $wp_version;
+	
+	// if WP version is less than 3.2, show notice when on TPack options page
+	if ( isset( $_GET['page'] ) && 'bp-tpack-options' == $_GET['page'] ) {
+		if ( version_compare( $wp_version, '3.2', '<' ) ) {
+		?>
+			<div class="error">
+				<p>Hey you! You're using an older version of WordPress.  Please upgrade to <strong>WordPress 3.2</strong>, otherwise the javascript bundled with BuddyPress will cease to work with your WordPress theme.</p>
+			</div>
+		<?php
+		}
+
 		return;
+	}
 
 	if ( !(int)get_option( 'bp_tpack_configured' ) ) {
 		?>
