@@ -78,7 +78,7 @@ function bp_tpack_enqueue_scripts() {
 	);
 
 	// BP 1.5+
-	if ( version_compare( BP_VERSION, '1.3' ) > 0 ) {
+	if ( version_compare( BP_VERSION, '1.3', '>' ) ) {
 		// Bump this when changes are made to bust cache
 		$version            = '20110818';
 
@@ -111,7 +111,7 @@ function bp_tpack_enqueue_styles() {
 		return;
 
 	// BP 1.5+
-	if ( version_compare( BP_VERSION, '1.3' ) > 0 ) {
+	if ( version_compare( BP_VERSION, '1.3', '>' ) ) {
 		$stylesheet = 'bp.css';
 
 		// Bump this when changes are made to bust cache
@@ -125,6 +125,10 @@ function bp_tpack_enqueue_styles() {
 
 	// Add the wireframe BP page styles
 	wp_enqueue_style( 'bp', plugins_url( '/bp-template-pack/' ) . $stylesheet, array(), $version );
+
+	// Enqueue RTL styles for BP 1.5+
+	if ( version_compare( BP_VERSION, '1.3', '>' ) && is_rtl() )
+		wp_enqueue_style( 'bp-rtl',  plugins_url( '/bp-template-pack/' ) . 'bp-rtl.css', array( 'bp' ), $version );
 }
 add_action( 'wp_print_styles', 'bp_tpack_enqueue_styles' );
 
@@ -170,7 +174,7 @@ add_filter( 'bp_get_activity_action_pre_meta', 'bp_tpack_activity_secondary_avat
 
 
 /**  BP 1.2.x *************************************************************/
-if ( version_compare( BP_VERSION, '1.3' ) < 0 ) :
+if ( version_compare( BP_VERSION, '1.3', '<' ) ) :
 
 	/*****
 	 * Add support for showing the activity stream as the front page of the site
