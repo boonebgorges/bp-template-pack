@@ -115,7 +115,7 @@ function bp_tpack_enqueue_styles() {
 		$stylesheet = 'bp.css';
 
 		// Bump this when changes are made to bust cache
-		$version    = '20110822';
+		$version    = '20110918';
 	}
 	// BP 1.2.x older styles
 	else {
