@@ -2,7 +2,7 @@
 Contributors: apeatling, boonebgorges
 Tags: buddypress, themes, compatibility, convert, integration
 Requires at least: WordPress 3.0 / BuddyPress 1.2
-Tested up to: WordPress 3.2.1 / BuddyPress 1.5-beta-2
+Tested up to: WordPress 3.2.1 / BuddyPress 1.5
 Stable tag: 1.1.4
 
 == Description ==
@@ -23,8 +23,8 @@ Head to the "Appearance > BP Compatibility" menu and follow the step-by-step ins
 == Changelog ==
 
 = 1.2 =
-* Add BP 1.5 compatibility
-* Restructure how scripts and CSS are enqueued
+* Adds BP 1.5 compatibility
+* Restructures how scripts and CSS are enqueued
 * Removed bundled template files
 
 = 1.1.4 =
