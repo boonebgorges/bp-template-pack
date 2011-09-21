@@ -3,7 +3,7 @@ Contributors: apeatling, boonebgorges
 Tags: buddypress, themes, compatibility, convert, integration
 Requires at least: WordPress 3.0 / BuddyPress 1.2
 Tested up to: WordPress 3.2.1 / BuddyPress 1.5
-Stable tag: 1.1.4
+Stable tag: 1.2
 
 == Description ==
 
