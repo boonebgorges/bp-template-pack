@@ -43,7 +43,7 @@ add_action( 'plugins_loaded', 'bp_tpack_load_language', 9 );
  */
 function bp_tpack_admin_notices() {
 	global $wp_version;
-	
+
 	// if WP version is less than 3.2, show notice when on TPack options page
 	if ( isset( $_GET['page'] ) && 'bp-tpack-options' == $_GET['page'] ) {
 		if ( version_compare( $wp_version, '3.2', '<' ) ) {
@@ -201,37 +201,44 @@ function bp_tpack_theme_menu() {
 			<p><?php _e( 'You will need to change the HTML structure in the BuddyPress templates that you copied into your theme to match the structure in your <code>page.php</code> or <code>index.php</code> file.', 'bp-tpack' ); ?></p>
 
 			<?php if ( version_compare( BP_VERSION, '1.3' ) > 0 ) : ?>
-				<p><?php _e( "In BuddyPress 1.5, the easiest way to do this is to make copies of your theme's <code>header.php</code>, <code>sidebar.php</code> and <code>footer.php</code> and rename them to <code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>.", 'bp-tpack' ); ?></p>
+				<p><?php _e( "There are two methods for making the necessary template changes.", 'bp-tpack' ) ?></p>
 
-				<p><?php _e( "Then you can alter the structure of these new template files (<code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>) to resemble your theme's page.php (or index.php).", 'bp-tpack' ); ?></p>
-
-				<p><?php _e( 'The older method consisted of manually modifying the following files:', 'bp-tpack' ); ?></p>
+				<ol>
+					<li>
+						<?php _e( "The first method is to locate tho following templates (leave out any folders that you didn't copy over in Step Two):", 'bp-tpack' ) ?>
 
 			<?php else : ?>
 				<p><?php _e( 'The files that you need to edit are as follows (leave out any folders you have not copied over in step two):', 'bp-tpack' ); ?></p>
 			<?php endif; ?>
 
 			<ul style="list-style: disc; margin-left: 40px;">
-				<li><?php echo '/activity/index.php' ?></li>
-				<li><?php echo '/blogs/index.php' ?></li>
-				<li><?php echo '/forums/index.php' ?></li>
-				<li><?php echo '/groups/index.php' ?></li>
-				<li><?php echo '/groups/create.php' ?></li>
-				<li><?php echo '/groups/single/home.php' ?></li>
-				<li><?php echo '/groups/single/plugins.php' ?></li>
-				<li><?php echo '/members/index.php' ?></li>
-				<li><?php echo '/members/single/home.php' ?></li>
-				<li><?php echo '/members/single/plugins.php' ?></li>
-				<li><?php echo '/registration/register.php' ?></li>
+				<li><code><?php echo '/activity/index.php' ?></code></li>
+				<li><code><?php echo '/blogs/index.php' ?></code></li>
+				<li><code><?php echo '/forums/index.php' ?></code></li>
+				<li><code><?php echo '/groups/index.php' ?></code></li>
+				<li><code><?php echo '/groups/create.php' ?></code></li>
+				<li><code><?php echo '/groups/single/home.php' ?></code></li>
+				<li><code><?php echo '/groups/single/plugins.php' ?></code></li>
+				<li><code><?php echo '/members/index.php' ?></code></li>
+				<li><code><?php echo '/members/single/home.php' ?></code></li>
+				<li><code><?php echo '/members/single/plugins.php' ?></code></li>
+				<li><code><?php echo '/registration/register.php' ?></code></li>
 
 				<?php if ( is_multisite() ) : ?>
-					<li><?php echo '/blogs/create.php' ?></li>
-					<li><?php echo '/registration/activate.php' ?></li>
+					<li><code><?php echo '/blogs/create.php' ?></code></li>
+					<li><code><?php echo '/registration/activate.php' ?></code></li>
 				<?php endif; ?>
 			</ul>
 
 			<?php if ( version_compare( BP_VERSION, '1.3' ) > 0 ) : ?>
-				<p><?php _e( 'So as you can see, modifying these three files (<code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>) instead of 10+ files makes things a lot more easier!', 'bp-tpack' ); ?></p>
+					</li>
+
+					<li>
+						<p><?php _e( "Alternatively, you may find it easier to make copies of your theme's <code>header.php</code>, <code>sidebar.php</code> and <code>footer.php</code> and rename them to <code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>.", 'bp-tpack' ); ?></p>
+
+						<p><?php _e( "Then you can alter the structure of these new template files (<code>header-buddypress.php</code>, <code>sidebar-buddypress.php</code>, and <code>footer-buddypress.php</code>) to resemble your theme's <code>page.php</code> (or <code>index.php</code>).", 'bp-tpack' ); ?></p>
+					</li>
+				</ol>
 			<?php endif; ?>
 
 			<p><?php _e( 'Once you are done matching up the HTML structure of your theme in these template files, please take another look through your site. You should find that BuddyPress pages now fit inside the content structure of your theme.', 'bp-tpack' ); ?></p>
