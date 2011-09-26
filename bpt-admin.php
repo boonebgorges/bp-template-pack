@@ -222,11 +222,14 @@ function bp_tpack_theme_menu() {
 				<li><code><?php echo '/members/index.php' ?></code></li>
 				<li><code><?php echo '/members/single/home.php' ?></code></li>
 				<li><code><?php echo '/members/single/plugins.php' ?></code></li>
+				<li><code><?php echo '/members/single/settings/delete-account.php' ?></code></li>
+				<li><code><?php echo '/members/single/settings/notifications.php' ?></code></li>
+				<li><code><?php echo '/members/single/settings/general.php' ?></code></li>
 				<li><code><?php echo '/registration/register.php' ?></code></li>
+				<li><code><?php echo '/registration/activate.php' ?></code></li>
 
 				<?php if ( is_multisite() ) : ?>
 					<li><code><?php echo '/blogs/create.php' ?></code></li>
-					<li><code><?php echo '/registration/activate.php' ?></code></li>
 				<?php endif; ?>
 			</ul>
 
