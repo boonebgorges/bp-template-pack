@@ -130,7 +130,7 @@ function bp_tpack_enqueue_styles() {
 	if ( version_compare( BP_VERSION, '1.3', '>' ) && is_rtl() )
 		wp_enqueue_style( 'bp-rtl',  plugins_url( '/bp-template-pack/' ) . 'bp-rtl.css', array( 'bp' ), $version );
 }
-add_action( 'wp_print_styles', 'bp_tpack_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'bp_tpack_enqueue_styles' );
 
 if ( !function_exists( 'bp_tpack_use_wplogin' ) ) :
 /**
