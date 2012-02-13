@@ -73,15 +73,13 @@ add_action( 'admin_notices', 'bp_tpack_admin_notices' );
  * Output the BPT admin page
  */
 function bp_tpack_theme_menu() {
-	$theme_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
-
 	if ( !empty( $_GET['finish'] ) )
 		update_option( 'bp_tpack_configured', 1 );
 
 	if ( !empty( $_GET['reset'] ) )
 		delete_option( 'bp_tpack_configured' );
 
-	if ( !file_exists( $theme_dir . 'activity' ) && !file_exists( $theme_dir . 'blogs' ) && !file_exists( $theme_dir . 'forums' ) && !file_exists( $theme_dir . 'groups' ) && !file_exists( $theme_dir . 'members' ) && !file_exists( $theme_dir . 'registration' ) ) {
+	if (   !file_exists( get_query_template('bp-tpack', array('activity', 'blogs', 'forums', 'groups', 'members', 'registration') ) ) ) {
 		$step = 1;
 
 		if ( !empty( $_GET['move'] ) ) {
@@ -145,7 +143,7 @@ function bp_tpack_theme_menu() {
 
 					<p><?php _e( 'In this directory you will find six folders (/activity/, /blogs/, /forums/, /groups/, /members/, /registration/). If you want to use all of the features of BuddyPress then you must move these six directories to the following folder:', 'bp-tpack' ); ?></p>
 
-					<p><code><?php echo $theme_dir ?></code></p>
+					<p><code><?php echo get_stylesheet_directory() . '/' ?></code></p>
 
 					<p><?php _e( "If you decide that you don't want to use a feature of BuddyPress, then you can actually ignore the template folders for these features. For example, if you don't want to use the groups and forums features, you can simply avoid copying the /groups/ and /forums/ template folders to your active theme. (If you're not sure what to do, just copy all six folders over to your theme directory.)", 'bp-tpack' ); ?></p>
 
@@ -194,7 +192,7 @@ function bp_tpack_theme_menu() {
 
 			<p><?php _e( "If BuddyPress pages are not aligned correctly, then you may need to modify some of the templates to match your theme's HTML structure. The best way to do this is to access your theme's files, via FTP, at:", 'bp-tpack' ); ?></p>
 
-			<p><code><?php echo $theme_dir ?></code></p>
+			<p><code><?php echo get_stylesheet_directory() . '/' ?></code></p>
 
 			<p><?php _e( 'Open up the <code>page.php</code> file (if this does not exist, use <code>index.php</code>). Make note of the HTML template structure of the file, specifically the <code>&lt;div&gt;</code> tags that surround the content and sidebar.', 'bp-tpack' ); ?></p>
 
@@ -205,7 +203,7 @@ function bp_tpack_theme_menu() {
 
 				<ol>
 					<li>
-						<?php _e( "The first method is to locate tho following templates (leave out any folders that you didn't copy over in Step Two):", 'bp-tpack' ) ?>
+						<?php _e( "The first method is to locate the following templates (leave out any folders that you didn't copy over in Step Two):", 'bp-tpack' ) ?>
 
 			<?php else : ?>
 				<p><?php _e( 'The files that you need to edit are as follows (leave out any folders you have not copied over in step two):', 'bp-tpack' ); ?></p>
@@ -332,7 +330,7 @@ function bp_tpack_theme_menu() {
  * @uses bp_tpack_recurse_copy()
  */
 function bp_tpack_move_templates() {
-	$destination_dir = WP_CONTENT_DIR . '/themes/' . get_option('stylesheet') . '/';
+	$destination_dir = get_stylesheet_directory() . '/';
 	$source_dir = BP_PLUGIN_DIR . '/bp-themes/bp-default/';
 
 	$dirs = array( 'activity', 'blogs', 'forums', 'groups', 'members', 'registration' );
