@@ -22,6 +22,10 @@ Head to the "Appearance > BP Compatibility" menu and follow the step-by-step ins
 
 == Changelog ==
 
+= 1.2.1 =
+* Improves performance with parent/child themes
+* Improves performance with WP 3.3+
+
 = 1.2 =
 * Adds BP 1.5 compatibility
 * Restructures how scripts and CSS are enqueued
