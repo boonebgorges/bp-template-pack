@@ -4,7 +4,7 @@ Plugin Name: BuddyPress Template Pack
 Plugin URI: http://wordpress.org/extend/plugins/bp-template-pack/
 Description: Add support for BuddyPress to your existing WordPress theme. This plugin will guide you through the process step by step.
 Author: apeatling, boonebgorges, r-a-y
-Version: 1.2
+Version: 1.2.1
 Author URI: http://buddypress.org
 */
 

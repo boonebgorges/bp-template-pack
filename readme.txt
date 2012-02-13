@@ -2,8 +2,8 @@
 Contributors: apeatling, boonebgorges, r-a-y
 Tags: buddypress, themes, compatibility, convert, integration
 Requires at least: WordPress 3.0 / BuddyPress 1.2
-Tested up to: WordPress 3.2.1 / BuddyPress 1.5
-Stable tag: 1.2
+Tested up to: WordPress 3.3.1 / BuddyPress 1.5.4
+Stable tag: 1.2.1
 
 == Description ==
 
@@ -21,6 +21,10 @@ Activate the plugin in the "Plugins" admin panel using the "Activate" link.
 Head to the "Appearance > BP Compatibility" menu and follow the step-by-step instructions.
 
 == Changelog ==
+
+= 1.2.1 =
+* Improves performance with parent/child themes
+* Improves performance with WP 3.3+
 
 = 1.2 =
 * Adds BP 1.5 compatibility
