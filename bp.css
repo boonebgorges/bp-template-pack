@@ -852,7 +852,7 @@ table.profile-fields p {
 table.profile-fields p:last-child {
 	margin-top: 0;
 }
-.padder div#sidebar table {
+#sidebar .padder table {
 	margin: 0 -16px;
 	width: 117%;
 }
@@ -873,7 +873,7 @@ table tr td.thread-info p.thread-excerpt {
 	font-size: 11px;
 	margin-top: 3px;
 }
-.padder div#sidebar table td,
+#sidebar .padder table td,
 table.forum td {
 	text-align: center;
 }
