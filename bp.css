@@ -643,14 +643,14 @@ div#invite-list {
 	padding: 5px;
 	width: 160px;
 }
-button,
-a.button,
-input[type=submit],
-input[type=button],
-input[type=reset],
+.padder button,
+.padder a.button,
+.padder input[type=submit],
+.padder input[type=button],
+.padder input[type=reset],
 ul.button-nav li a,
 div.generic-button a,
-.comment-reply-link {
+.padder .comment-reply-link {
 	background: #fff; /* Old browsers */
 	background: -moz-linear-gradient(top, #ffffff 0%, #ededed 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
@@ -672,16 +672,16 @@ div.generic-button a,
 	text-decoration: none;
 	line-height: 14px;
 }
-button:hover,
-a.button:hover,
-a.button:focus,
-input[type=submit]:hover,
-input[type=button]:hover,
-input[type=reset]:hover,
+.padder button:hover,
+.padder a.button:hover,
+.padder a.button:focus,
+.padder input[type=submit]:hover,
+.padder input[type=button]:hover,
+.padder input[type=reset]:hover,
 ul.button-nav li a:hover,
 ul.button-nav li.current a,
 div.generic-button a:hover,
-.comment-reply-link:hover {
+.padder .comment-reply-link:hover {
 	background: #ededed;
 	background: -moz-linear-gradient(top, #ffffff 0%, #e0e0e0 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e0e0e0)); /* Chrome,Safari4+ */
@@ -699,15 +699,15 @@ div.generic-button a:hover,
 /*--------------------------------------------------------------
 6 - Ajax Loading
 --------------------------------------------------------------*/
-a.loading,
-input.loading {
+.padder a.loading,
+.padder input.loading {
     background-image: url( ../buddypress/bp-themes/bp-default/_inc/images/ajax-loader.gif );
     background-position: 95% 50%;
     background-repeat: no-repeat;
     padding-right: 25px;
 }
-a.loading:hover,
-input.loading:hover {
+.padder a.loading:hover,
+.padder input.loading:hover {
     background-image: url( ../buddypress/bp-themes/bp-default/_inc/images/ajax-loader.gif );
     background-position: 95% 50%;
     background-repeat: no-repeat;
@@ -830,10 +830,10 @@ div#new-topic-post {
 	margin: 20px 0 0 0;
 	padding: 1px 0 0 0;
 }
-table {
+.padder table {
 	width: 100%;
 }
-table thead tr {
+.padder table thead tr {
 	background: #eaeaea;
 }
 table#message-threads {
@@ -852,15 +852,15 @@ table.profile-fields p {
 table.profile-fields p:last-child {
 	margin-top: 0;
 }
-div#sidebar table {
+.padder div#sidebar table {
 	margin: 0 -16px;
 	width: 117%;
 }
-table tr td,
-table tr th {
+.padder table tr td,
+.padder table tr th {
 	vertical-align: middle;
 }
-table tr td.label {
+.padder table tr td.label {
 	border-right: 1px solid #eaeaea;
 	font-weight: bold;
 	width: 25%;
@@ -873,11 +873,11 @@ table tr td.thread-info p.thread-excerpt {
 	font-size: 11px;
 	margin-top: 3px;
 }
-div#sidebar table td,
+.padder div#sidebar table td,
 table.forum td {
 	text-align: center;
 }
-table tr.alt td {
+.padder table tr.alt td {
 	background: #f5f5f5;
 }
 table.notification-settings {
