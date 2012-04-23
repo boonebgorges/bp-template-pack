@@ -24,8 +24,8 @@ if ( 'bp-default' == get_option( 'template' ) )
 function bp_tpack_theme_setup() {
 	global $bp;
 
-	// Load the default BuddyPress AJAX functions if it isn't explicitly disabled
-	if ( !(int)get_option( 'bp_tpack_disable_js' ) )
+	// Load the default BuddyPress AJAX functions if it isn't explicitly disabled or if it isn't already included in a custom theme
+	if ( ! (int)get_option( 'bp_tpack_disable_js' ) || ! function_exists( 'bp_dtheme_ajax_querystring' ) )
 		require_once( BP_PLUGIN_DIR . '/bp-themes/bp-default/_inc/ajax.php' );
 
 	if ( !is_admin() ) {
@@ -80,9 +80,11 @@ function bp_tpack_enqueue_scripts() {
 	// BP 1.5+
 	if ( version_compare( BP_VERSION, '1.3', '>' ) ) {
 		// Bump this when changes are made to bust cache
-		$version            = '20110818';
+		$version = '20120412';
 
-		$params['view']     = __( 'View', 'buddypress' );
+		$params['view']        = __( 'View', 'buddypress' );
+		$params['mark_as_fav'] = __( 'Favorite', 'buddypress' );
+		$params['remove_fav']  = __( 'Remove Favorite', 'buddypress' );
 	}
 	// BP 1.2.x
 	else {
