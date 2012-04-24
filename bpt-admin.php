@@ -13,6 +13,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * When BPT is deactivated, remove a few options from the DB
+ *
+ * @since 1.0
  */
 function bp_tpack_deactivate() {
 	/* Cleanup */
@@ -24,6 +26,8 @@ register_deactivation_hook( __FILE__, 'bp_tpack_deactivate' );
 
 /**
  * Adds the BPT admin page under the "Themes" menu.
+ *
+ * @since 1.0
  */
 function bp_tpack_add_theme_menu() {
 	add_theme_page( __( 'BP Compatibility', 'bp-tpack' ), __( 'BP Compatibility', 'bp-tpack' ), 'switch_themes', 'bp-tpack-options', 'bp_tpack_theme_menu' );
@@ -31,15 +35,9 @@ function bp_tpack_add_theme_menu() {
 add_action( 'admin_menu', 'bp_tpack_add_theme_menu' );
 
 /**
- * Loads custom language file.
- */
-function bp_tpack_load_language() {
-	load_plugin_textdomain( 'bp-tpack', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
-}
-add_action( 'plugins_loaded', 'bp_tpack_load_language', 9 );
-
-/**
  * Adds an admin notice if BPT hasn't been setup yet.
+ *
+ * @since 1.1
  */
 function bp_tpack_admin_notices() {
 	global $wp_version;
@@ -71,6 +69,8 @@ add_action( 'admin_notices', 'bp_tpack_admin_notices' );
 
 /**
  * Output the BPT admin page
+ *
+ * @since 1.0
  */
 function bp_tpack_theme_menu() {
 	if ( !empty( $_GET['finish'] ) )
@@ -328,6 +328,7 @@ function bp_tpack_theme_menu() {
  * Function to copy over bp-default's main templates to the current WP theme
  *
  * @uses bp_tpack_recurse_copy()
+ * @since 1.0
  */
 function bp_tpack_move_templates() {
 	$destination_dir = get_stylesheet_directory() . '/';
@@ -347,7 +348,7 @@ function bp_tpack_move_templates() {
  * Removes the "you'll need to activate a BuddyPress-compatible theme" message from the admin when
  * the plugin is up and running successfully
  *
- * @since 1.3
+ * @since 1.2
  */
 function bp_tpack_remove_compatibility_message() {
 	global $bp;
@@ -377,6 +378,7 @@ add_action( 'admin_notices', 'bp_tpack_remove_compatibility_message', 2 );
  * @param string $src Location of source directory to copy
  * @param string $dst Location of destination directory where the copied files should reside
  * @see bp_tpack_move_templates()
+ * @since 1.0
  */
 function bp_tpack_recurse_copy( $src, $dst ) {
 	$dir = @opendir( $src );

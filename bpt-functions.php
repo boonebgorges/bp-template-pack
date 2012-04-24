@@ -12,10 +12,6 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-// Check to make sure the active theme is not bp-default
-if ( 'bp-default' == get_option( 'template' ) )
-	return;
-
 /**
  * Sets up WordPress theme for BuddyPress support.
  *
@@ -28,7 +24,10 @@ function bp_tpack_theme_setup() {
 	if ( ! (int)get_option( 'bp_tpack_disable_js' ) || ! function_exists( 'bp_dtheme_ajax_querystring' ) )
 		require_once( BP_PLUGIN_DIR . '/bp-themes/bp-default/_inc/ajax.php' );
 
-	if ( !is_admin() ) {
+	// Let's tell BP that we support it!
+	add_theme_support( 'buddypress' );
+
+	if ( ! is_admin() ) {
 		// Register buttons for the relevant component templates
 		// Friends button
 		if ( bp_is_active( 'friends' ) )
